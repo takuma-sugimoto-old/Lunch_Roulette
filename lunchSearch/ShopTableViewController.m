@@ -91,7 +91,7 @@ NSTimer *myTimer;
     [UIView commitAnimations];
      */
     [UIView animateWithDuration:0.5
-                          delay:0
+                          delay:0.1
                           options:UIViewAnimationOptionAllowUserInteraction
                           animations:^{
                           cell.layer.transform = CATransform3DIdentity;

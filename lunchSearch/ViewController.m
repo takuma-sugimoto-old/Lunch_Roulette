@@ -20,7 +20,11 @@
     [super viewDidLoad];
     
     // 背景画像設定
-    UIImage *backgroundImage  = [UIImage imageNamed:@"background.png"];
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"background.png"] drawInRect:self.view.bounds];
+    UIImage *backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
 
     // ロケーションマネージャの初期化

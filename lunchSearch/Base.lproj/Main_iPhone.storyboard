@@ -53,23 +53,38 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ov7-JA-X7C" customClass="ShopTableView">
-                                <rect key="frame" x="0.0" y="-35" width="320" height="441"/>
+                                <rect key="frame" x="0.0" y="-35" width="320" height="489"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bg1-qX-zyE">
-                                <rect key="frame" x="101" y="414" width="119" height="116"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mp-g4-MLu">
+                                <rect key="frame" x="0.0" y="462" width="320" height="106"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="28"/>
-                                <state key="normal" title="STOP" backgroundImage="stop_button">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapStopBtn:" destination="edg-Wv-IC4" eventType="touchUpInside" id="9ai-6h-pUw"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bg1-qX-zyE">
+                                        <rect key="frame" x="112" y="0.0" width="97" height="93"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="28"/>
+                                        <state key="normal" title="STOP" backgroundImage="stop_button">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapStopBtn:" destination="edg-Wv-IC4" eventType="touchUpInside" id="9ai-6h-pUw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="106" id="3dI-d2-Rmj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3Mp-g4-MLu" secondAttribute="trailing" id="FMf-0M-YwU"/>
+                            <constraint firstItem="JhJ-6d-zYI" firstAttribute="top" secondItem="3Mp-g4-MLu" secondAttribute="bottom" id="ScA-F4-XK8"/>
+                            <constraint firstItem="3Mp-g4-MLu" firstAttribute="leading" secondItem="224-qH-mF0" secondAttribute="leading" id="aZq-Vk-dwb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dJp-Yl-fPR">
                         <barButtonItem key="leftBarButtonItem" title="戻る" id="jH1-Te-2Eh">

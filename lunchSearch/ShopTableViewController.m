@@ -24,6 +24,9 @@ NSTimer *myTimer;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    // セルのタップイベントを無効化
+    self.tableView.allowsSelection = NO;
+    
     // カスタマイズしたセルをテーブルビューにセット
     UINib *nib = [UINib nibWithNibName:@"TableViewCustomCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
@@ -36,10 +39,12 @@ NSTimer *myTimer;
  */
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     //オリジナルのcellのframeとっておく
     CGRect originFrame = cell.frame;
     //アニメーション前の状態を設定
     cell.backgroundColor = [UIColor clearColor];
+    
     cell.alpha = 0.1f;
     //cell.transform = CGAffineTransformMakeScale(0.8, 0.8);
     cell.frame = CGRectMake(originFrame.origin.x + 30, originFrame.origin.y, originFrame.size.width, originFrame.size.height);
@@ -62,6 +67,47 @@ NSTimer *myTimer;
                          cell.frame = CGRectMake(originFrame.origin.x + 30, originFrame.origin.y, originFrame.size.width, originFrame.size.height);
                      } completion:nil];
      }];
+     */
+    CATransform3D rotation,reverseRotation;
+    rotation =  CATransform3DMakeRotation( -(M_PI)/2, 0.0, 0.4, 0.7);
+    rotation.m34 = 1.0/ 1000;
+    
+    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
+    cell.layer.shadowOffset = CGSizeMake(10, 10);
+    cell.alpha = 0;
+    
+    cell.layer.transform = rotation;
+    cell.layer.anchorPoint = CGPointMake(0, 0.5);
+    
+    reverseRotation = CATransform3DMakeRotation((M_PI)/2, 0.0, 0.4, 0.7);
+    reverseRotation.m34 = 1.0/1000;
+    
+    /*
+    [UIView beginAnimations:@"rotation" context:NULL];
+    [UIView setAnimationDuration:0.5];
+    cell.layer.transform = CATransform3DIdentity;
+    cell.alpha = 1;
+    cell.layer.shadowOffset = CGSizeMake(0, 0);
+    [UIView commitAnimations];
+     */
+    [UIView animateWithDuration:0.5
+                          delay:0
+                          options:UIViewAnimationOptionAllowUserInteraction
+                          animations:^{
+                          cell.layer.transform = CATransform3DIdentity;
+                          cell.alpha = 1;
+                          cell.layer.shadowOffset = CGSizeMake(0, 0);
+                          }
+                     completion:^(BOOL finished){
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options:UIViewAnimationOptionAllowUserInteraction
+                        animations:^{
+                            cell.layer.transform = reverseRotation;
+                            cell.alpha = 0;
+                            cell.layer.shadowOffset = CGSizeMake(10, 10);
+                        }completion:nil];
+                     }];
 }
 
 - (void)viewDidAppear:(BOOL)animated

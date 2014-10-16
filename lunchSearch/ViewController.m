@@ -35,6 +35,7 @@
     
     // ロケーションマネージャ作成
     self.locationManager = [[CLLocationManager alloc]init];
+    /*
     if ([CLLocationManager locationServicesEnabled])
     {
         self.locationManager.delegate = self;
@@ -49,7 +50,9 @@
                                               otherButtonTitles:nil];
         [alert show];
         return;
-    }
+    }*/
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
 
 }
 
@@ -137,5 +140,13 @@
     NSLog(@"locationManager Error %@", error);
 }
 
-
+// CLLocationManager オブジェクトにデリゲートオブジェクトを設定すると初回に呼ばれる
+- (void)locationManager:(CLLocationManager *)manager
+didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    // ユーザが位置情報の使用を許可していない
+    if (status == kCLAuthorizationStatusNotDetermined && IS_OS_8_OR_LATER) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+}
 @end
